@@ -11,6 +11,10 @@ defmodule Metex.Worker do
     GenServer.call(pid, {:location, location})
   end
 
+  def get_stats(pid) do
+    GenServer.call(pid, :get_stats)
+  end
+
   #server-side
 
   def init(:ok) do
@@ -26,6 +30,10 @@ defmodule Metex.Worker do
       _ ->
         {:reply, :error, stats}
     end
+  end
+
+  def handle_call(:get_stats, _from, stats) do
+    {:reply, stats, stats}
   end
 
   #helpers
