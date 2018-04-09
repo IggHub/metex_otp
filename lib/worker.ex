@@ -52,6 +52,11 @@ defmodule Metex.Worker do
     {:stop, :normal, stats}
   end
 
+  def terminate(reason, stats) do
+    IO.puts "server terminated because of #{inspect reason}"
+    IO.puts inspect stats
+    :ok  
+  end
   #helpers
 
   defp temperature_of(location) do
